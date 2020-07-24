@@ -5,7 +5,7 @@ export class ToDo {
 
     constructor(text: string) {
         this.text = text;
-        this.id = new Date().getTime();
+        this.id = Math.random();
         this.completed = false;
     }
 }
