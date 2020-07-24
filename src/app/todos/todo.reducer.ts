@@ -3,7 +3,9 @@ import { create } from './todo.actions';
 import { ToDo } from './models/todo.model';
 import { TypedAction } from '@ngrx/store/src/models';
 
-export const initialState: ToDo[] = [];
+export const initialState: ToDo[] = [
+    new ToDo('Curso de Redux con Angular')
+];
 
 const innerTodoReducer = createReducer(initialState,
     on(create, (state, { text }) => [...state, new ToDo(text)])
