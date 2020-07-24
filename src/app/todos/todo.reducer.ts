@@ -1,5 +1,5 @@
 import { createReducer, on } from '@ngrx/store';
-import { create, toggle, edit, remove, toggleAll } from './todo.actions';
+import { create, toggle, edit, remove, toggleAll, clearCompleted } from './todo.actions';
 
 import { ToDo } from './models/todo.model';
 
@@ -39,7 +39,9 @@ const innerTodoReducer = createReducer(
 
     on(toggleAll, (state, { completado }) => state.map(todo => {
         return { ...todo, completed: completado };
-    }))
+    })),
+
+    on(clearCompleted, (state) => state.filter(todo => !todo.completed))
 );
 
 export function todoReducer(state: ToDo[], action): ToDo[] {

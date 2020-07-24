@@ -5,15 +5,15 @@ import { ReactiveFormsModule } from '@angular/forms';
 // NgRx
 import { StoreModule } from '@ngrx/store';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { todoReducer } from './todos/todo.reducer';
+import { appReducers, devtoolsOptions } from './todos/app.reducer';
 
 // enviroment
 import { environment } from '../environments/environment';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { TodosModule } from './todos/todos.module';
 import { FooterComponent } from './footer/footer.component';
+import { TodosModule } from './todos/todos.module';
 
 @NgModule({
     declarations: [
@@ -25,11 +25,8 @@ import { FooterComponent } from './footer/footer.component';
         ReactiveFormsModule,
         AppRoutingModule,
         TodosModule,
-        StoreModule.forRoot({ todos: todoReducer }),
-        StoreDevtoolsModule.instrument({
-            maxAge: 25, // Retains last 25 states
-            logOnly: environment.production, // Restrict extension to log-only mode
-        }),
+        StoreModule.forRoot(appReducers),
+        StoreDevtoolsModule.instrument(devtoolsOptions),
     ],
     providers: [],
     bootstrap: [AppComponent]
